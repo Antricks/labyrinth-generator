@@ -1,0 +1,62 @@
+body {
+    background: #282828;
+    color: #ebdbb2;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+input {
+    background-color: #1d201d;
+    color: #fbf1c7;
+    border: 2px solid #3c3836;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 500px;
+    height: 1fr;
+    background: #3c3836;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1fr;
+    height: 1fr;
+    background: #ebdbb2;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 1fr;
+    height: 1fr;
+    background: #ebdbb2;
+    cursor: pointer;
+}
+
+button, button.plus, button.minus {
+    background-color: #1d201d;
+    color: #fbf1c7;
+    border: 2px solid #3c3836;
+}
+
+button:hover {
+    background-color: #3c3836;
+}
+
+button:active {
+    background-color: #1d201d;
+}
+
+#canv {
+    margin-left: auto;
+    margin-right: auto;
+}

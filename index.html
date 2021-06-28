@@ -1,0 +1,22 @@
+<!Doctype HTML>
+
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<title>Labyrinth Generator</title>
+</head>
+
+<body>
+    <center>
+        <canvas width="500" height="500" id="canv"></canvas>
+        <br>
+        <p id="size-label">Amount of tiles (X & Y):</p>
+        <input type="range" min="10" max="200" value="50" class="slider" id="size" oninput="onDimensionChange()">
+        <br>
+        <button onclick="generate()">Generate!</button>
+    </center>
+    
+    <script src="labyrinth_generator.js"></script>
+</body>
+</html>
