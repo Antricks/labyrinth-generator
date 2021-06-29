@@ -5,6 +5,9 @@ var canv = canvRaw.getContext("2d");
 var canv_width = canvRaw.clientWidth;
 var canv_height = canvRaw.clientHeight;
 
+var amount_rooms = 3;
+var room_size_max = 7;
+
 var size_label = document.getElementById("size-label");
 var size_input = document.getElementById("size");
 var maxv = 51;
@@ -34,17 +37,29 @@ function onDimensionChange() {
     }
 }
 
+function generateSetupRooms() {
+    for(var i = 0; i < room_amount; i++) {
+        var room_x = floor(Math.random()*maxv/2)*2+1;
+        var room_y = floor(Math.random()*maxv/2)*2+1;
+        
+        var room_w = floor(Math.random()*room_size_max/2)*2+1;
+        var room_h = floor(Math.random()*room_size_max/2)*2+1;
+    
+        for(var x = room_x; x < room_x + room_w; x++) {
+            for(var y = room_y; y < room_y + room_h; y++) {
+                tiles[x][y] = 2;
+            }
+        }
+    }
+}
+
 function generateSetup() {
     tiles = [];
 
     for(var x = 0; x < maxv; x++) {
         tiles[x] = []
         for(var y = 0; y < maxv; y++) {
-            if(x % 2 == 1 && y % 2 == 1) {
-                tiles[x][y] = 2;
-            } else {
-                tiles[x][y] = 0;
-            }
+            tiles[x][y] = 0;
         }
     }
 }
@@ -62,32 +77,32 @@ function generatePath(x, y) {
     
     var possible_neighbors = []
 
-    if(y-2 > 0 && tiles[x][y-2] == 2) {
+    if(y-2 > 0 && tiles[x][y-2] == 0) {
         possible_neighbors.push(1);
     }
-    if(x+2 < maxv && tiles[x+2][y] == 2) {
+    if(x+2 < maxv && tiles[x+2][y] == 0) {
         possible_neighbors.push(2);
     }
-    if(y+2 < maxv && tiles[x][y+2] == 2) {
+    if(y+2 < maxv && tiles[x][y+2] == 0) {
         possible_neighbors.push(3);
     } 
-    if(x-2 > 0 && tiles[x-2][y] == 2) {
+    if(x-2 > 0 && tiles[x-2][y] == 0) {
         possible_neighbors.push(4);
     }
-
+    
     while(possible_neighbors.length > 0) {
         possible_neighbors = []
 
-        if(y-2 > 0 && tiles[x][y-2] == 2) {
+        if(y-2 > 0 && tiles[x][y-2] == 0) {
             possible_neighbors.push(1);
         }
-        if(x+2 < maxv && tiles[x+2][y] == 2) {
+        if(x+2 < maxv && tiles[x+2][y] == 0) {
             possible_neighbors.push(2);
         }
-        if(y+2 < maxv && tiles[x][y+2] == 2) {
+        if(y+2 < maxv && tiles[x][y+2] == 0) {
             possible_neighbors.push(3);
         } 
-        if(x-2 > 0 && tiles[x-2][y] == 2) {
+        if(x-2 > 0 && tiles[x-2][y] == 0) {
             possible_neighbors.push(4);
         }
         
@@ -135,6 +150,7 @@ function draw() {
 
 function generate() {
     generateSetup();
+    generateSetupRooms();
     generatePath(Math.floor(Math.random()*maxv/2)*2+1, Math.floor(Math.random()*maxv/2)*2+1);
     draw();
 }
