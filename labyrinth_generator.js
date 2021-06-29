@@ -5,8 +5,9 @@ var canv = canvRaw.getContext("2d");
 var canv_width = canvRaw.clientWidth;
 var canv_height = canvRaw.clientHeight;
 
-var amount_rooms = 3;
-var room_size_max = 7;
+var room_amount = 3;
+var room_size_max = 15;
+var room_size_min = 7;
 
 var size_label = document.getElementById("size-label");
 var size_input = document.getElementById("size");
@@ -39,11 +40,14 @@ function onDimensionChange() {
 
 function generateSetupRooms() {
     for(var i = 0; i < room_amount; i++) {
-        var room_x = floor(Math.random()*maxv/2)*2+1;
-        var room_y = floor(Math.random()*maxv/2)*2+1;
+        var room_x = Math.floor(Math.random()*(maxv-room_size_min)/2)*2+1;
+        var room_y = Math.floor(Math.random()*(maxv-room_size_min)/2)*2+1;
         
-        var room_w = floor(Math.random()*room_size_max/2)*2+1;
-        var room_h = floor(Math.random()*room_size_max/2)*2+1;
+        var room_w = Math.floor(Math.random()*(room_size_max-room_size_min)/2)*2+room_size_min;
+        var room_h = Math.floor(Math.random()*(room_size_max-room_size_min)/2)*2+room_size_min;
+    
+        room_w = Math.min(maxv-room_x-1, room_w);
+        room_h = Math.min(maxv-room_y-1, room_h);
     
         for(var x = room_x; x < room_x + room_w; x++) {
             for(var y = room_y; y < room_y + room_h; y++) {
