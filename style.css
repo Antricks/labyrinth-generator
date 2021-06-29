@@ -12,7 +12,7 @@ input {
 }
 
 .slider {
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     width: 500px;
     height: 12pt;
     background: #3c3836;
