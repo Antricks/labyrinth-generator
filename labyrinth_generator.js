@@ -51,9 +51,11 @@ function generateSetupRooms() {
     
         for(var x = room_x; x < room_x + room_w; x++) {
             for(var y = room_y; y < room_y + room_h; y++) {
-                tiles[x][y] = 2;
+                tiles[x][y] = 1;
             }
         }
+
+
     }
 }
 
@@ -154,8 +156,17 @@ function draw() {
 
 function generate() {
     generateSetup();
-    generateSetupRooms();
-    generatePath(Math.floor(Math.random()*maxv/2)*2+1, Math.floor(Math.random()*maxv/2)*2+1);
+    // generateSetupRooms();
+    
+    // let pathStartX = Math.floor(Math.random()*maxv/2)*2+1;
+    // let pathStartY = Math.floor(Math.random()*maxv/2)*2+1;
+    
+    // while(tiles[pathStartX][pathStartY] != 0) {
+    //     pathStartX = Math.floor(Math.random()*maxv/2)*2+1;
+    //     pathStartY = Math.floor(Math.random()*maxv/2)*2+1;
+    // }
+    generatePath(pathStartX, pathStartY);
+
     draw();
 }
 
